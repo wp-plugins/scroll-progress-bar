@@ -27,11 +27,12 @@ class Scroll_Progress_Admin {
 	private $metabox_id = 'scroll_progress_option_metabox';
 
 	/**
-	 * Options Page title
+	 * Options Page title/menu title
 	 * @var string
 	 */
 	protected $title = '';
-
+	protected $menu_title = '';
+	
 	/**
 	 * Options Page hook
 	 * @var string
@@ -44,8 +45,8 @@ class Scroll_Progress_Admin {
 	 * @since 0.1.0
 	 */
 	public function __construct() {
-		// Set our title
-		$this->title = __( 'Scroll Progress', 'scroll-progress' );
+		$this->title = __( 'Scroll Progress Bar Settings', 'scroll-progress' );
+		$this->menu_title = __( 'Scroll Progress' );
 	}
 
 	/**
@@ -73,7 +74,7 @@ class Scroll_Progress_Admin {
 	 * @since 0.1.0
 	 */
 	public function spb_add_options_page() {
-		$this->options_page = add_submenu_page( 'options-general.php', $this->title, $this->title, 'manage_options', $this->key, array( $this, 'spb_admin_page_display' ) );
+		$this->options_page = add_submenu_page( 'options-general.php', $this->title, $this->menu_title, 'manage_options', $this->key, array( $this, 'spb_admin_page_display' ) );
 		// Include CMB CSS in the head to avoid FOUT
 		add_action( "admin_print_styles-{$this->options_page}", array( 'CMB2_hookup', 'enqueue_cmb_css' ) );
 	}
@@ -101,7 +102,7 @@ class Scroll_Progress_Admin {
 		// confirm that were on the 'Scroll Progress' options page, and alter the admin footer text
 		if( $GLOBALS['pagenow'] == 'options-general.php' && $screen->base == 'settings_page_scroll_progress_options' ) {
 			$evan_url = 'https://www.Evan-Herman.com';
-			$review_repo_url = 'http://www.wordpress.org';
+			$review_repo_url = 'https://wordpress.org/support/view/plugin-reviews/scroll-progress-bar';
 			$text = sprintf( wp_kses( __( '<strong>Scroll Progress</strong> proudly coded by <a href="%s" target="_blank">EH Dev Shop</a> in Philadelpha, PA.', 'scroll-progress' ), array(  'a' => array( 'href' => array() , 'target' => array() ), 'strong' => array() ) ), esc_url( $evan_url ) );
 			$text .= '<br />' . sprintf( wp_kses( __( 'If you enjoy this plugin, please consider leaving us a nice <a href="%s" target="_blank">review</a>.', 'my-text-domain' ), array(  'a' => array( 'href' => array() , 'target' => array() ) ) ), esc_url( $review_repo_url ) );
 			echo $text;
