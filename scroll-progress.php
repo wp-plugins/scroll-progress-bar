@@ -168,6 +168,8 @@ function spb_enqueue_scripts_and_styles() {
 */
 function spb_smooth_scroll_scripts_and_styles() {
 	$scroll_progress_options = spb_get_options();
+	$duration = isset( $scroll_progress_options['smooth_scroll_scroll_time'] ) ? $scroll_progress_options['smooth_scroll_scroll_time'] : '.5';
+	$distance = isset( $scroll_progress_options['smooth_scroll_pixel_offset'] ) ? $scroll_progress_options['smooth_scroll_pixel_offset'] : '300';
 	// enqueue our smooth scroll script from CDN
 	wp_register_script( 'smooth-scroll' , plugin_dir_url( __FILE__ ) . 'lib/js/TweenMax.min.js' , array( 'jquery' ) , 'all' );
 	wp_enqueue_script( 'smooth-scroll' );
@@ -177,8 +179,8 @@ function spb_smooth_scroll_scripts_and_styles() {
 	wp_register_script( 'smooth-scroll-handling' , plugin_dir_url( __FILE__ ) . 'lib/js/smooth-scroll-handle.min.js' , array( 'jquery' , 'smooth-scroll' , 'scroll-to' ) , 'all' );
 	// localize data, pass to our scroll handling script
 	$localized_array = array(
-		'scrollTime' => $scroll_progress_options['smooth_scroll_scroll_time'],
-		'scrollDistance' => $scroll_progress_options['smooth_scroll_pixel_offset']
+		'scrollTime' => $duration,
+		'scrollDistance' => $distance
 	);	
 	wp_localize_script( 'smooth-scroll-handling' , 'smooth_scroll' , $localized_array );
 	wp_enqueue_script( 'smooth-scroll-handling' );
