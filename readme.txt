@@ -1,6 +1,6 @@
 === Scroll Progress Bar ===
 Tags: scroll, bar, indicator, progress, scrollbar, progressbar, progress bar, scroll bar, location, indicator, smooth, scroll
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=paypal@woothemes.com&item_name=Donation+for+WooCommerce
+Donate link: https://www.evan-herman.com/contact/
 Requires at least: 4.0
 Tested up to: 4.2.2
 Stable tag: 0.1
